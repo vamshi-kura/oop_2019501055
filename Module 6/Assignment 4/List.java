@@ -161,7 +161,7 @@ public class List {
     // todo create resize method
 
     public void resize(){
-        list = Arrays.copyOf(list, 10);
+        list = Arrays.copyOf(list, list.length*2);
 
         
     }
