@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - Clock",
+            "request": "launch",
+            "mainClass": "Clock",
+            "projectName": "oop_2019501055_2864a29b"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - BinaryToDecimal",
             "request": "launch",
             "mainClass": "BinaryToDecimal",
