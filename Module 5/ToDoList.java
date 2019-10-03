@@ -27,7 +27,12 @@ public class ToDoList {
             }
         }
     }
-    
+    public void removeTask (String taskname) {
+
+    }
+    public void changeStatus (String stat) {
+
+    }
     
 }
 
