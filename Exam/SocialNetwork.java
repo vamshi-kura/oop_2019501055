@@ -55,23 +55,21 @@ public class SocialNetwork {
                 for (int j = 1; j < s1.length; j++ ) {
                     String name1 = s1[j];
                     User u1 = new User(name1);
-                    addUser(u1);
+                    if (!(searchUser(u1))) {
+                        addUser(u1);
+                    }
+                    u=getUser(u.userName);
                     addConnection(u, u1);
-                }
-
-
-                
+                }   
             }
-
-        
         }
-
         return;
     }
 
     private boolean searchUser(User user) {
         for (int i = 0; i < size; i++) {
-            if (user.equals(users[i])) {
+            
+            if (user.userName.equals(users[i].userName)) {
                 return true;
             }
         }
@@ -88,7 +86,7 @@ public class SocialNetwork {
      */
     public User getUser(String userName) {
         for (int i = 0; i < size; i++) {
-            if (userName.equals(users[i].getUserName())) {
+            if (userName.equals(users[i].userName)){
                 return users[i];
             }
         }
@@ -126,13 +124,13 @@ public class SocialNetwork {
         // TODO
         // Your code goes here
         // User[] us = userA.getUserConnections();
+        // System.out.println("therre1");
+        if (userA == null || userB == null){
+            return;
+        }
         if (searchUser(userA) && searchUser(userB)) {
             userA.addConn(userB);
         }
-        
-        
-
-
     }
 
     /**
@@ -155,7 +153,7 @@ public class SocialNetwork {
         if (userA.noOfUser == 0) {
             return null;
         }
-        return userA.getUserConnections();
+        return userA.userConnections;
     }
 
     /**
@@ -172,6 +170,9 @@ public class SocialNetwork {
     public User[] getCommonConnections(User userA, User userB) {
         // TODO
         // Your code goes here
+        if (userA == null || userB == null){
+            return null;
+        }
         if (!(searchUser(userA) && searchUser(userB))){
             return null;
         }
@@ -182,18 +183,17 @@ public class SocialNetwork {
         User[] res = new User[f1.length+f2.length];
         int count = 0 ; 
         if (userB.noOfUser == 0 || userA.noOfUser == 0) {
-            return res;
+            return null;
         }
         for (int i = 0 ; i < userA.noOfUser; i++){
             for (int j = 0; j< userB.noOfUser; j++) {
-                if( f1[i].getUserName().equals(f2[j].getUserName())) {
+                if( f1[i].userName.equals(f2[j].userName)) {
                     res[count] = f1[i];
                     count++;
                 }
             }
         }
-        return res;
-        
+        return res;  
     }
 
     /**
@@ -209,13 +209,13 @@ public class SocialNetwork {
         StringBuffer sb = new StringBuffer();
         int i = 0;
         for (i = 0; i < size-1; i++) {
-            if(users[i].noOfUser == 0 ) {
-                continue;
-            }
+            // if(users[i].noOfUser == 0 ) {
+            //     continue;
+            // }
             sb.append(users[i] + "\n");
         }
-        if (users[i].noOfUser != 0)
-            sb.append(users[i]);
+        // if (users[i].noOfUser != 0)
+        sb.append(users[i]);
         return sb.toString();
     }
     
