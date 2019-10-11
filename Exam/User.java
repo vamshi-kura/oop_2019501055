@@ -32,49 +32,17 @@ public class User {
         userConnections[noOfUser] = ub;
         noOfUser++;
     }
-    
-    
-    public void setUserName(String user) {
-        this.userName = user;
-    }
-    /**
-     * 
-     * @return
-     */
-    public String getUserName() {
-        return this.userName;
-    }
-    /**
-     * 
-     * @param conn
-     */
-    public void setUserConnections(User[] conn) {
-        this.userConnections = conn;
-    }
-    /**
-     * 
-     * @return
-     */
-    public User[] getUserConnections() {
-        return this.userConnections;
-    }
-    /**
-     * 
-     * @param user
-     */
-    public void setNoOfUser(int n) {
-        this.noOfUser = n;
-    }
-    /**
-     * 
-     * @return
-     */
-    public int getNoOfUser() {
-        return this.noOfUser;
+    public boolean searchUserarray(User user) {
+        for (int i = 0; i < noOfUser; i++) {
+            if (user.equals(userConnections[i])) {
+                return true;
+            }
+        }
+        return false;
     }
     public String toString() {
          String s = userName  + " : ";
-         if (this.noOfUser == 0) {
+         if (this.noOfUser == 0 ) {
              return s + "";
          }
         else{

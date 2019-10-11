@@ -49,7 +49,6 @@ public class Menu {
             System.out.println("Testcase 1 passed");
             count++;
         } else {
-            System.out.println(network.toString());
             System.out.println("Testcase 1 failed");
         }
 
@@ -63,7 +62,6 @@ public class Menu {
             System.out.println("Testcase 2 passed");
             count++;
         } else {
-            
             System.out.println("Testcase 2 failed");
         }
 
@@ -84,7 +82,6 @@ public class Menu {
             System.out.println("Testcase 4 passed");
             count++;
         } else {
-            
             System.out.println("Testcase 4 failed");
         }
 
@@ -351,7 +348,7 @@ public class Menu {
         String str = "[";
         for (int i = 0; i < users.length; i++) {
             if(users[i] != null) {
-                str = str + users[i].getUserName() + ",";
+                str = str + users[i].userName + ",";
             }
         }
         str = str.substring(0, str.length()-1) + "]";
