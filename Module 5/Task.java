@@ -1,83 +1,94 @@
+/**
+ * we create a class for each task.
+ */
 class Task {
-    /**.
-     * declaring the field of task as private so others cannot change the
-     * value.
-     */
-    private final String name;
     /**
-     * declaring the field of task as private so others cannot change the
-     * value.
+     * name of the task.
      */
-    private final Stirng description;
+    private String name;
     /**
-     * declaring the field of task as private so others cannot change the
-     * value.
+     * task description.
      */
-    private final Date dueDate;
+    private String description;
     /**
-     * declaring the field of task as private so others cannot change the
-     * value.
+     * deadline for the task.
      */
-    private final String status;
+    private String date;
+    /**
+     * status of the task.
+     */
+    private String status;
 
-    public Task(String s, String des, Date d, String stat) {
-        this.name = s;
-        this.description = des;
-        this.dueDate= d;
-        this.status = stat;
-    }
-    
-    public void setName(final String na) {
-        this.name = na;
-    }
     /**
-     * this method return the 'name' field of the class.
-     * @return  the name value.
+     * parametric constructor to initialize.
+     * @param newname of the  task.
+     * @param newdescription of the task.
+     * @param newdate of the task.
+     */
+    Task(final String newname, final String newdescription, final String newdate, final String newstatus) {
+        name = newname;
+        description = newdescription;
+        date = newdate;
+        status = newstatus;
+    }
+
+    /**
+     * getter for task name.
+     * @return the name.
      */
     public String getName() {
         return this.name;
     }
-    /**.
-     * By this method we can change the description of the task
-     * @param desc1 it's string variable.
-     */
-    public void setDescription(final String desc) {
-        this.description = desc;
-    }
     /**
-     * this method return the  description field of the class.
-     * @return  the description variable  value.
+     * setter for task name.
+     * @param name1 of the task
+     */
+    public void setName(final String name1) {
+        this.name = name1;
+    }
+
+    /**
+     * getter for task description.
+     * @return the description.
      */
     public String getDescription() {
         return this.description;
     }
     /**
-     * By this method we can change the duedate  of the task
-     * @param da it's string variable.
+     * setter for task description.
+     * @param description1 of the task.
      */
-    public void setDate(final String da) {
-        this.duedate = da;
+    public void setDescription(final String description1) {
+        this.description = description1;
     }
-   /**
-     * this method return the due date field of the class.
-     * @return  the duedate variable  value.
+
+    /**
+     * getter for task date.
+     * @return the date.
      */
     public String getDate() {
-        return this.dueDate;
+        return this.date;
     }
     /**
-     * By this method we can change the status. of the task
-     * @param st it's string variable.
+     * setter for task date.
+     * @param date1 of the task.
      */
-    public void setStatus(final String st) {
-        this.status= st;
+    public void setDate(final String date1) {
+        this.date = date1;
     }
-   /**
-     * this method return the 'status' field of the class.
-     * @return  the Status variable  value.
+
+    /**
+     * getter for task status.
+     * @return the status.
      */
     public String getStatus() {
         return this.status;
     }
-
+    /**
+     * setter for task status.
+     * @param status1 of the ststus
+     */
+    public void setStatus(final String status1) {
+        this.status = status1;
+    }
 }
