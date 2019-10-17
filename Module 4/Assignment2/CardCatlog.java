@@ -1,134 +1,236 @@
-/**
- * This class maintains the catalog  of card.
- *
- * The following are the opertaions that this CardCatlog application can
- * perform.
- *
- *1. Users should be able to addACard() to the catalog and the cards should be filed in the correct order inside of the arrays based on the correct field.
- *2. Users should be able to getATitle() by specifying the book's title (a String). This method should return the first Card with a title that matches the given title. Bonus: This should be done using a binary search.
- *3. Users should be able to getAnAuthor() by specifying a specific author. The method should return all the books written by this author.
- *4. Users should be able to getSubject() which should return a list which contains all the books that involve this subject. This should be implemented using regex to search for the books.
- *5. Users should be able to removeATitle() which should remove this books from ALL of the card catalog stacks.
- *6. Users should be able to printTheCatalog() which should neatly print out all of the books in order by either title, or author, or subject based on how the user wants it.    
- *
- * @author Kura Vamshi Krishna
- */
-import java.util.Arrays;
-public  class CardCatlog{
-    public Card [] tas;
-    
-    public int cardsCount;
+class CardCatalog {
     /**
-     * to avoid magic number
+     * creating an cardSortTitle array which stores the cards based
+     * on the title.
      */
-    static final int N =10;
+    private static Card[] cardSortTitle;
     /**
-     * public non-parameterized Constructor.
+     * creating an cardSortAuthor array which stores the cards based
+     * on the author.
      */
-    
-    public CardCatlog() {
-        this.tas = new Card[N];
-        // this.author = new Card[N];
-        // this.subject = new Card[N];
-        this.cardsCount =0;
+    private static Card[] cardSortAuthor;
+    /**
+     * creating an cardSortSubject array which stores the cards based
+     * on the subject.
+     */
+    private static Card[] cardSortSubject;
+    /**
+     * creating an myCards array to store the cards normally.
+     */
+    private static Card[] myCards;
+    /**
+     * creating a cardCount of type int which tells the number of books.
+     */
+    private static int cardCount;
+    /**
+     * creating a size of type for the array size.
+     */
+    private final int size = 100;
+    /**
+     * default constructor.
+     */
+    CardCatalog() {
+        myCards = new Card[size];
+        cardSortTitle = new Card[size];
+        cardSortAuthor = new Card[size];
+        cardSortSubject = new Card[size];
+        cardCount = 0;
     }
     /**
-     * this method  is used to add a card to all the arrays that we defined at the time of object creation.
-     * @param newCard is a card object.
+     * addCard takes a card of type Card and add it in myCards
+     * and we call three more functions to store the cards differently.
+     * @param card we use the card object to store it in other arrays.
      */
-    public void addACard(Card newCard) {
-        tas[cardsCount] = newCard;
-        
-        // Arrays.sort(title, new Card.titleOrder());
-        // Arrays.sort(author, new Card.authorOrder());
-        // Arrays.sort(subject, new Card.subjectOrder());
-        cardsCount++;
-
+    public void addCard(final Card card) {
+        myCards[cardCount] = card;
+        cardSortTitle(card);
+        cardSortAuthor(card);
+        cardSortSubject(card);
+        cardCount++;
     }
     /**
-     * this method should return the first Card with a title that matches the given title
-     * @param titleName the search item.
-     * @return the card which has the particular title name 
+     * sorting the cardSortTitle by title and assigning
+     * the new card respectively.
+     * @param card we use the card object to store it in other arrays.
      */
-    public Card getTitle(final String titleName) {
-        for(int i =0; i < tas.length; i++) {
-            if (tas[i].getTitle().equals(titleName))
-                return tas[i];
-        }
-        return null;
-    }
-
-    /**
-     * The method should return all the books written by this author.
-     * @param authorName the author name.
-     * @return an array that matches with the author name.
-     */
-    public Card [] getAuthor(final String authorName) {
-         Card pAuthor[] = new Card[tas.length];
-         int count = 0;
-         for(int i = 0; i < tas.length;i++) {
-            if (tas[i].getAuthor().equals(authorName))
-                pAuthor[count] = tas[i];
-                count++;
-         }
-         return pAuthor;
-    }
-    /**
-     * This should be implemented using regex to search for the books.
-     * @param subjectName the subject name.
-     * @return an array that matches with the author name.
-     */
-    public Card [] getSubject(final String subjectName) {
-        Card pSubject[] = new Card[tas.length];
-        int count = 0;
-        for(int i = 0; i < tas.length;i++) {
-           if (tas[i].getSubject().equals(subjectName))
-               pSubject[count] = tas[i];
-               count++;
-        }
-        return pSubject;
-
-    }
-    /**
-     * By this method we can remove all card objects that contain the title .
-     * @param titleName
-     * @return
-     */
-    public boolean removeATitle(final String titleName) {
-        int index [] =new int[tas.length];
-        int count =-1;
-        for(int i =0; i < tas.length; i++) {
-            if (tas[i].getTitle().equals(titleName)) {
-                index[count] = i;
-                count++;
-            }
-        }
-        if (count >= 0){
-            for(int i: index) {
-                tas[i] = null;
-            }
-            for(int k = index[0]; k < tas.length; k++) {
-                tas[k] = tas[k+1];
-                if (k > (tas.length-1)-count){ 
-                    tas[k] = null;
+    public static void cardSortTitle(final Card card) {
+        int i;
+        int j;
+        int flag = 0;
+        for (i = 0; i < cardCount; i++) {
+            if ((card.getTitle().compareTo(cardSortTitle[i].getTitle()))
+            <= 0) {
+                for (j = cardCount; j >= i; j--) {
+                    cardSortTitle[j + 1] = cardSortTitle[j];
                 }
-
+                cardSortTitle[i] = card;
+                flag = 1;
+                break;
             }
-            return true;
         }
-        return false;
-
+        if (flag == 0) {
+            cardSortTitle[cardCount] = card;
+        }
     }
     /**
-     * 
-     * @param var
-     * @return
+     * sorting the cardSortTitle by author and assigning
+     * the new card respectively.
+     * @param card we use the card object to store it in other arrays.
      */
-    public  String printTheCatalog() {
-        String s = "";
-        for (Card each : tas) {
-            s += this.toString() + "\n";
+    public static void cardSortAuthor(final Card card) {
+    int i;
+    int j;
+    int flag = 0;
+    for (i = 0; i < cardCount; i++) {
+        if ((card.getAuthor().compareTo(cardSortAuthor[i].getAuthor())) <= 0) {
+            for (j = cardCount; j >= i; j--) {
+                cardSortAuthor[j + 1] = cardSortAuthor[j];
+            }
+            cardSortAuthor[i] = card;
+            flag = 1;
+            break;
         }
-        return s;
+    }
+    if (flag == 0) {
+        cardSortAuthor[cardCount] = card;
+    }
+    }
+    /**
+     * sorting the cardSortTitle by subject and assigning the
+     * new card respectively.
+     * @param card we use the card object to store it in other arrays.
+     */
+    public static void cardSortSubject(final Card card) {
+    int i;
+    int j;
+    int flag = 0;
+    for (i = 0; i < cardCount; i++) {
+    if ((card.getSubject().compareTo(cardSortSubject[i].getSubject())) <= 0) {
+        for (j = cardCount; j >= i; j--) {
+            cardSortSubject[j + 1] = cardSortSubject[j];
+        }
+        cardSortSubject[i] = card;
+        flag = 1;
+        break;
+    }
+    }
+    if (flag == 0) {
+        cardSortSubject[cardCount] = card;
+    }
+    }
+    /**
+     * we display all the books of specific title.
+     * @param title title to be searched.
+     */
+    public void getATitle(final String title) {
+        for (int i = 0; i < cardCount; i++) {
+            if (myCards[i].getTitle().equals(title)) {
+                System.out.println(myCards[i].getTitle()
+                + "," + myCards[i].getAuthor() + ","
+                + myCards[i].getSubject());
+            }
+        }
+    }
+    /**
+     * we display all the books of specific author.
+     * @param author author to be searched.
+     */
+    public void getAnAuthor(final String author) {
+        for (int i = 0; i < cardCount; i++) {
+            if (myCards[i].getAuthor().equals(author)) {
+                System.out.println(myCards[i].getTitle()
+                + "," + myCards[i].getAuthor() + ","
+                + myCards[i].getSubject());
+            }
+        }
+    }
+    /**
+     * we display all the books of specific author.
+     * @param subject subject to be searched.
+     */
+    public void getSubject(final String subject) {
+        for (int i = 0; i < cardCount; i++) {
+            if (myCards[i].getSubject().equals(subject)) {
+                System.out.println(myCards[i].getTitle()
+                + "," + myCards[i].getAuthor() + ","
+                + myCards[i].getSubject());
+            }
+        }
+    }
+    /**
+     * remove the books with the given title in all the arrays.
+     * @param title title to be removed.
+     */
+    public void removeATitle(final String title) {
+        int temporary1 = cardCount;
+        int temporary2 = cardCount;
+        int temporary3 = cardCount;
+        int temporary4 = cardCount;
+        int i;
+        for (i = 0; i < temporary1; i++) {
+            if (myCards[i].getTitle().equals(title)) {
+                myCards[i] = null;
+                for (int j = i; j < temporary1; j++) {
+                    myCards[j] = myCards[j + 1];
+                }
+                i--;
+                temporary1--;
+            }
+        }
+        for (i = 0; i < temporary2; i++) {
+            if (cardSortTitle[i].getTitle().equals(title)) {
+                cardSortTitle[i] = null;
+                for (int j = i; j < temporary2; j++) {
+                    cardSortTitle[j] = cardSortTitle[j + 1];
+                }
+                i--;
+                temporary2--;
+            }
+        }
+        for (i = 0; i < temporary3; i++) {
+            if (cardSortSubject[i].getTitle().equals(title)) {
+                cardSortSubject[i] = null;
+                for (int j = i; j < temporary3; j++) {
+                    cardSortSubject[j] = cardSortSubject[j + 1];
+                }
+                i--;
+                temporary3--;
+            }
+        }
+        for (i = 0; i < temporary4; i++) {
+            if (cardSortAuthor[i].getTitle().equals(title)) {
+                cardSortAuthor[i] = null;
+                for (int j = i; j < temporary4; j++) {
+                    cardSortAuthor[j] = cardSortAuthor[j + 1];
+                }
+                temporary4--;
+                i--;
+            }
+        }
+        cardCount = temporary1;
+    }
+    /**
+     * to display the card we have to convert each of the field into string.
+     * @param type type of the sorting based the author wants.
+     * @return returns alldone if the input is right else invalid.
+     */
+    public String printTheCatalog(final String type) {
+        Card[] present;
+        if (type == "Title") {
+            present =  cardSortTitle;
+        } else if (type == "Author") {
+            present = cardSortAuthor;
+        } else if (type == "Subject") {
+            present = cardSortSubject;
+        } else {
+            System.out.println("invald");
+            return "invalid";
+        }
+        for (int i = 0; i < cardCount; i++) {
+            System.out.println("{title: " + present[i].getTitle()
+            + ", author: " + present[i].getAuthor() + ", subject: "
+             + present[i].getSubject() + "}");
+        }
+        return "all done";
     }
 }

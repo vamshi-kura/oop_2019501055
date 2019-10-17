@@ -1,100 +1,78 @@
 /**
- * This class discusses about the Contact Object. The attributes of the
- * contact object
- * are as follows.
- * title of the book
- * author of the book
- * subject of the book
- *
- * @author Kura Vamshi Krishna.
+ * we create a card class in order to store the fields title,a uthor, subject.
  */
-
-//  Your code goes here... For Contact class
-public final class Card {
-    /**.
-     * for check style
-     */
-    private Card() {
-        //unused
-    }
+class Card {
     /**
-     * declaring the field of contact as private so others cannot change the
-     * value.
+     * title of the book.
      */
     private String title;
     /**
-     * declaring the field of contact as private so others cannot change the
-     * value.
+     * author of the book.
      */
     private String author;
     /**
-     * declaring the field of contact as private so others cannot change the
-     * value.
+     * subject of the book.
      */
     private String subject;
-
-    /**.
-     * it's parameterized constructor
-     * @param title1 it's a string variable that stores name of the contact.
-     * @param author1 it's a string variable that store email of a person.
-     * @param subject1 it's a string variable that stores a phone number.
+    /**
+     * default constructor.
      */
-
-    public Card(final String title1, final String author1,
-    final String subject1) {
+    Card() {
+        title = "title";
+        author = "author";
+        subject = "subject";
+    }
+    /**
+     * constructoe to assign the given parameters.
+     * @param title1 title of the book.
+     * @param author1 author of the book.
+     * @param subject1 subject of the book.
+     */
+    Card(final String title1, final String author1, final String subject1) {
         this.title = title1;
         this.author = author1;
         this.subject = subject1;
     }
     /**
-     * this method is used to print the fields of the object.
-     * @return the expected ouput manner.
+     * getter for title.
+     * @return the respective title of the book.
      */
-    public  String toString() {
-        return "{ Name = " + this.title + ", " + "author = " + this.author
-        + ", " + "Subject = " + this.subject + " }";
+    public String getTitle() {
+        return this.title;
     }
-    /**.
-     * By this method we can change the name of the contact
-     * @param title1 it's string variable.
+    /**
+     * setter for title.
+     * @param title1 title of the book.
      */
     public void setTitle(final String title1) {
         this.title = title1;
     }
     /**
-     * this method return the 'name' field of the class.
-     * @return  the name value.
-     */
-    public String getTitle() {
-        return this.title;
-    }
-    /**.
-     * By this method we can change the email of the contact
-     * @param author1 it's string variable.
-     */
-    public void setAuthor(final String author1) {
-        this.author = author1;
-    }
-    /**
-     * this method return the 'email' field of the class.
-     * @return  the email variable  value.
+     * getter for author.
+     * @return the respective author of the book.
      */
     public String getAuthor() {
         return this.author;
     }
     /**
-     * By this method we can change the phone no. of the contact
-     * @param sub it's string variable.
+     * setter for author.
+     * @param author1 author of the book.
      */
-    public void setSubject(final String sub) {
-        this.subject = sub;
+    public void setAuthor(final String author1) {
+        this.author = author1;
     }
-   /**
-     * this method return the 'phoneNumber' field of the class.
-     * @return  the phone number variable  value.
+    /**
+     * getter for subject.
+     * @return the respective subject of the book.
      */
     public String getSubject() {
         return this.subject;
     }
-
+    /**
+     * setter for subject.
+     * @param subject1 subject of the book.
+     */
+    public void setSubject(final String subject1) {
+        this.subject = subject1;
+    }
 }
