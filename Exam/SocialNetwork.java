@@ -68,7 +68,6 @@ public class SocialNetwork {
 
     private boolean searchUser(User user) {
         for (int i = 0; i < size; i++) {
-            
             if (user.userName.equals(users[i].userName)) {
                 return true;
             }
@@ -218,5 +217,21 @@ public class SocialNetwork {
         sb.append(users[i]);
         return sb.toString();
     }
+    public delUser(String un) {
+        int index = -1;
+        for (int i=0; i < size; i++) {
+            if (un.equals(users[i].userName)){
+                index =i;
+                break
+            }
+        }
+        if (index >= 0){
+            for (int j = index; j < size; j++){
+                users[i] = users[i];
+            }
+            uses[size--] = null;
+    }
+    }
+
     
 }
