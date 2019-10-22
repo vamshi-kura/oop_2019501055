@@ -68,6 +68,10 @@ public class SocialNetwork {
 
     private boolean searchUser(User user) {
         for (int i = 0; i < size; i++) {
+<<<<<<< HEAD
+=======
+            
+>>>>>>> f034c1c8939121152d8b36cd7971e33f4677dfe0
             if (user.userName.equals(users[i].userName)) {
                 return true;
             }

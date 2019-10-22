@@ -98,7 +98,10 @@ public class User {
         userConnections[noOfUser] = ub;
         noOfUser++;
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> f034c1c8939121152d8b36cd7971e33f4677dfe0
     public boolean searchUserarray(User user) {
         for (int i = 0; i < noOfUser; i++) {
             if (user.equals(userConnections[i])) {
