@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -287,6 +288,10 @@ class Operations {
     }
 }
 
+=======
+import java.util.Scanner;
+
+>>>>>>> d033ee08bd3783af283ef36d317eaa37c8146010
 public final class Main {
     /**
      * for check style.
@@ -300,7 +305,11 @@ public final class Main {
      */
     public static void main(final String[] args) {
         Scanner scanner = new Scanner(System.in);
+<<<<<<< HEAD
         Operations standard = new Operations();
+=======
+        ToDoList standard = new ToDoList();
+>>>>>>> d033ee08bd3783af283ef36d317eaa37c8146010
         boolean status = true;
         while (status) {
             System.out.println("--------------------------");
