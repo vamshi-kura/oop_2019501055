@@ -2,7 +2,7 @@
  * 
  */
 
-public class OrderedList extends AbstractList {
+public class OrderedSet<E extends Comparable<E>> extends AbstractSet<E>  {
     /*
      * The add method does what the name suggests.
      * Add an int item to the list.
@@ -13,11 +13,17 @@ public class OrderedList extends AbstractList {
      * to the list.
      * 
      * The method returns void (nothing)
-     */
-    public void add(int item) {
+     */public OrderedSet(){
+        super();
+    }
+    public OrderedSet(int capacity) {
+        super(capacity);
+    }
+    public void add(E item) {
         //Inserts the specified element at the end of the list.
         // TODO
         // Your code goes here....
+        // System.out.println("i'm here");
         if (this.size >= list.length-1){
             resize();
         }
@@ -35,7 +41,7 @@ public class OrderedList extends AbstractList {
         int i;
         for ( i= 0; i < size; i++) {
             // System.out.println(" Going to added");
-            if (list[i] > item) {
+            if (list[i].compareTo(item) > 0) {
                 for (int j = size; j > i; j--) {
                     list[j] = list[j - 1];
                 }
@@ -51,19 +57,19 @@ public class OrderedList extends AbstractList {
         }
     }
 
-    public int rank(int item) {
-        int lo = 0, hi = size-1; 
-        while (lo <= hi) { 
-            int mid = lo + (hi - lo) / 2;
-            if      (item < list[hi]) hi = mid - 1; 
-            else if (item > list[lo]) lo = mid + 1; 
-            else return mid; 
-        } 
-        return lo;
-    } 
+    // public int rank(int item) {
+    //     int lo = 0, hi = size-1; 
+    //     while (lo <= hi) { 
+    //         int mid = lo + (hi - lo) / 2;
+    //         if      (item < list[hi]) hi = mid - 1; 
+    //         else if (item > list[lo]) lo = mid + 1; 
+    //         else return mid; 
+    //     } 
+    //     return lo;
+    // } 
 
     public static void main(String[] args) {
-        AbstractList lst = new OrderedList();
+        AbstractSet lst = new OrderedSet();
         lst.add(1, 1);
     }
     

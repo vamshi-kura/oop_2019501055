@@ -7,6 +7,8 @@
  *
  * @author kura vamshi krishna
  */
+import java.util.Objects;
+
 public class Word {
     /**
      * For check style
@@ -81,16 +83,16 @@ public class Word {
         this.hints = hints;
     }
 
-    // @Override
-    // public boolean equals(Object o) {
-    //     if (o == this)
-    //         return true;
-    //     if (!(o instanceof Word)) {
-    //         return false;
-    //     }
-    //     Word word = (Word) o;
-    //     return Objects.equals(name, word.name);
-    // }
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof Word)) {
+            return false;
+        }
+        Word word = (Word) o;
+        return Objects.equals(name, word.name);
+    }
 
     // @Override
     // public int hashCode() {

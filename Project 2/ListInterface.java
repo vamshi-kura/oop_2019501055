@@ -4,11 +4,11 @@
  * @author Siva Sankar
  */
 
-public interface ListInterface {
+public interface ListInterface<E extends Comparable<E>> {
     /**
      * Adds an item to this List.
      */
-    public void add(int item);
+    public void add(E item);
    
     /**
      * Thid method returns the number of elements in this list.
@@ -20,7 +20,7 @@ public interface ListInterface {
     /**
      * Returns an item at a particular index from this list.
      */
-    public int get(int index);
+    public E get(int index);
 
     /**
      * This method returns the index of an item. If the item is not
@@ -28,7 +28,7 @@ public interface ListInterface {
      * @param item, to be used to find the index.
      * @return the index of the element if present, -1 otherwise.
      */
-    public int indexOf(int item);
+    public int indexOf(E item);
 
     /**
      * This method returns true if the item is present in this list.
@@ -37,7 +37,7 @@ public interface ListInterface {
      * list.
      * @return true if item is present in this list and false otherwise.
      */
-    public boolean contains(int item);
+    public boolean contains(E item);
     
     /**
      * This method will removes the element at a particular index.
@@ -57,7 +57,7 @@ public interface ListInterface {
      * This method adds all the elements of arr to this list.
      * @param arr the array of elements.
      */
-    public void addAll(int[] arr);
+    public void addAll(E[] arr);
     
     /**
      * This method returns the last index of the element in this list.
@@ -65,7 +65,7 @@ public interface ListInterface {
      * @return the lastIndexOf item from this list
      * If the item is not there, return -1
      */
-    public int lastIndexOf(int item);
+    public int lastIndexOf(E item);
 
     /**
      * This method returns the number of occurances 
@@ -74,27 +74,19 @@ public interface ListInterface {
      * @return the number of occurnaces of the item in this list.
      * If the item is not there, return -1
      */
-    public int count(int item);
+    public int count(E item);
 
-    /**
-     * Returns the subList of elements that are in the index range of 
-     * fromIndex to toIndex
-     * @param fromIndex From Index
-     * @param toIndex To Index
-     * @return the subList of this List based on fromIndex and toIndex
-     */
-    public List subList(int fromIndex, int toIndex);
 
     /**
      * This method adds the elements of the lst to this list.
      * @param lst to be used to add the elemtns to this list.
      */
-    public void addAll(List lst);
+    public void addAll(List<E> lst);
 
     /**
      * Adding the item at a particular index
      * @param index the item to be added at this index
      * @param item the item to be added
      */
-    public void add(int index, int item);
+    public void add(int index, E item);
 }

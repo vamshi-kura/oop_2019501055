@@ -13,14 +13,14 @@
 
 import java.util.Arrays;
 
-public abstract class AbstractList implements ListInterface  {
-    // Implement all the methods mentioned to build a ListADT and 
+public abstract class AbstractList <E extends Comparable<E>> implements ListInterface<E>  {
+// Implement all the methods mentioned to build a ListADT and 
     // OrderedList ADT
 
     /*
      * The goal for the list is to store items.
      * How are we going to store the items in the list?
-     * An listay would be good. Right?
+     * An list  would be good. Right?
      * So, assume we are only going to have ints in the list
      * We need to create an listay of ints to store the items
      * added to the list.
@@ -67,7 +67,7 @@ public abstract class AbstractList implements ListInterface  {
     // again, don't initialize it here
     // variable initialization should be done in the constructor
 
-    public int[] list;
+    public E[] list;
     public int size;
 
     /*
@@ -86,7 +86,7 @@ public abstract class AbstractList implements ListInterface  {
         // How many items do we have in the list when you create it?
         // An empty list has how many items?
         // That is the initial value to use for size.
-        list = new int[10];
+        list = (E[])new Comparable[10];
         size = 0;
     }
     
@@ -106,7 +106,7 @@ public abstract class AbstractList implements ListInterface  {
      */
     public AbstractList(int capacity) {
         size = 0;
-        list = new int[capacity];
+        list = (E[])new Comparable[capacity];
     }
     
     /*
@@ -120,7 +120,7 @@ public abstract class AbstractList implements ListInterface  {
      * 
      * The method returns void (nothing)
      */ 
-    public abstract void add(int item) ;
+    public abstract void add(E item) ;
        
 
     /**
@@ -145,7 +145,7 @@ public abstract class AbstractList implements ListInterface  {
      * 
      * Think of on which object this method can be called. List / OrderedList and etc.
      */
-    public  void add(int index, int item) {
+    public void add(int index, E item) {
         // TODO
         // Your code goes here.
         return;
@@ -158,7 +158,7 @@ public abstract class AbstractList implements ListInterface  {
      * 
      * @param lst list containing elements to be added to this list.
      */
-    public void addAll(List lst) {
+    public void addAll(List<E> lst) {
         // TODO
         // Your code goes here.
         for(int i=0; i<lst.size(); i++) {
@@ -172,7 +172,7 @@ public abstract class AbstractList implements ListInterface  {
      * @param arr is an array of items that should be added to 
      * this list.
      */
-    public void addAll(int[] arr ){
+    public void addAll(E[] arr ){
         // TODO
         // Your code goes here.
         for(int i=0; i<arr.length; i++) {
@@ -236,7 +236,7 @@ public abstract class AbstractList implements ListInterface  {
             for(int i =index; i<this.size; i++){
                 list[i] = list[i+1];
             }
-            list[this.size] = 0; 
+            list[this.size] = null; 
             size--;
         } else {
             System.out.println("out of  index");
@@ -254,7 +254,7 @@ public abstract class AbstractList implements ListInterface  {
      * How do we check if the position is greater than the 
      * number of items in the list? Would size variable be useful?
      */
-    public int get(int index) {
+    public E get(int index) {
         // Replace the code below to write the code for get
         // TODO
         // Your code goes here.
@@ -262,11 +262,9 @@ public abstract class AbstractList implements ListInterface  {
             for(int i =0; i <this.size;i++){
                 if (i == index)
                     return list[i];
-            
             }
-        
         }
-        return -1;
+        return null;
     }
 
     /*
@@ -306,11 +304,11 @@ public abstract class AbstractList implements ListInterface  {
      * So, iterate through the list and return true if
      * the item exists and otherwise false
      */
-    public boolean contains(int item) {
+    public boolean contains(E item) {
         // TODO
         // Your code goes here.
         for(int i =0; i <this.size;i++){
-            if (list[i] == item)
+            if (list[i].compareTo(item) == 0)
                 return true;
         }
         return false;
@@ -320,11 +318,11 @@ public abstract class AbstractList implements ListInterface  {
      * Returns the index of the first occurrence of the specified element in this list,
      * or -1 if this list does not contain the element.
      */
-    public int indexOf(int item) {
+    public int indexOf(E item) {
         // TODO
         // Your code goes here.
         for(int i =0; i <this.size;i++){
-            if (list[i] == item)
+            if (list[i].compareTo(item) == 0)
                 return i;
         }
         return -1;
@@ -338,80 +336,36 @@ public abstract class AbstractList implements ListInterface  {
      * @return the index of the last occurrence of the specified element in this list, 
      * or -1 if this list does not contain the element
      */
-    public int lastIndexOf(int item) {
+    public int lastIndexOf(E item) {
         // TODO
         // Your code goes here.
         if (contains(item)){
             for(int i = size-1; i >=0; i--){
-                if (list[i] == item){
+                if (list[i].compareTo(item) == 0)
                     return i;
                 }
             }
+        return -1;
         }
         
-        return -1;
-    }
 
     /**
      * Given an item, counts the number of occurances of the item in this list.
      * @param item to be counted in this list.
      * @return the number of occurances of the item in this list.
      */
-    public int count(int item) {
+    public int count(E item) {
         // TODO
         // Your code goes here.
         if(contains(item)) {
             int count =0;
             for(int i = indexOf(item);i< size;i++){
-                if (list[i]==item)
-                    count++;
-                
+                if (list[i].compareTo(item) == 0)
+                    count++;       
             }
             return count;
         }
-        
         return 0;
-    } 
-
-    /**
-     * Returns a view of the portion of this list between the specified fromIndex, 
-     * inclusive, and toIndex, exclusive. (If fromIndex and toIndex are equal, 
-     * the returned list is empty.) The returned list is backed by this list, 
-     * so non-structural changes in the returned list are reflected in this list,
-     *  and vice-versa. The returned list supports all of the optional list operations.
-     * @param fromIndex low endpoint (inclusive) of the subList
-     * @param toIndex high endpoint (exclusive) of the subList
-     * @return a view of the specified range within this list
-     */
-    public List subList(int fromIndex, int toIndex) {
-        // TODO
-        // Your code goes here.
-        
-        if (fromIndex >= 0 && fromIndex < toIndex && toIndex > fromIndex && toIndex <= this.size){
-            AbstractList l = new List(toIndex-fromIndex);
-            for(int i =fromIndex; i<toIndex; i++){
-                l.add(list[i]);
-            }
-            return (List)l;
-        }
-        
-        return null;
     }
-
-    /**
-     * Replaces the element at the specified position in this list 
-     * with the specified element.
-     * @param index - index of the element to replace
-     * @param element - element to be stored at the specified position
-     * @return the element previously at the specified position
-     */
-    public void set(int index, int item) {
-        // TODO
-        // Your code goes here.
-        if (index >=0 && index <size){
-            list[index] = item; 
-        }
-
-        }
     
 }

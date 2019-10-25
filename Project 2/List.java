@@ -2,14 +2,14 @@
  * 
  */
 
-public class List extends AbstractList {
+public class List<E extends Comparable<E>> extends AbstractList<E> {
     public List(){
         super();
     }
     public List(int capacity) {
         super(capacity);
     }
-    public  void add(int index, int item){
+    public  void add(int index, E item){
         if (this.size >= list.length ){
             resize();
         }
@@ -21,7 +21,7 @@ public class List extends AbstractList {
             size++;
         }
     }
-    public void add(int item) {
+    public void add(E item) {
         if (this.size >= list.length ){
             resize();
         }

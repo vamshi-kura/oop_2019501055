@@ -98,7 +98,6 @@ public class Hangman {
                 System.out.println("enter a valid number");
                 System.out.println(e.getMessage());
             }
-            
         }
         Hangman h = new Hangman(num);
         h.loadWords(data);
@@ -168,20 +167,16 @@ public class Hangman {
         Word wd;
         int points = 0;
         boolean p_flag = true;
+        String level;
         while(true) {
             System.out.println("enter the level: (easy, medium ,hard)");
             Scanner scan = new Scanner(System.in); 
             // need to use the try and catch test cases.
-            String level = scan.nextLine();
+            level = scan.nextLine();
             level = level.toLowerCase();
             if ( level.equals("easy") || level.equals("hard")
              || level.equals("medium")) {
                 wd = wordslist.getWord(level);
-                if (level.equals("hard")) {
-                    points = 10;
-                } else if (level.equals("meidum")) {
-                    points = 5;
-                }
                 break;
             } else {
                 System.out.println("Please enter correct input");
@@ -267,6 +262,11 @@ public class Hangman {
             if (count == 0) {
                 if(p_flag) {
                     points += 10;
+                }
+                if (level.equals("hard")) {
+                    points = 10;
+                } else if (level.equals("meidum")) {
+                    points = 5;
                 }
                 System.out.println("you guessed the correct answer");
                 break;
