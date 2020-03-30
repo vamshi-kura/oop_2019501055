@@ -14,6 +14,7 @@
  * @author Siva Sankar
  */
 
+Package p {
 public class MultiplesOfThreeFive {
     /**
      * This method returns true if the given n is multiple of 3 or 5.
@@ -23,13 +24,13 @@ public class MultiplesOfThreeFive {
     public static boolean or35(int n) {
         // Your code goes here...
         if (n > 0){
-            if ((n % 3 == 0 ) || (n % 5 == 0)){
-                return true;
-            }
-            return false;
+            return ((n % 3 == 0 ) || (n % 5 == 0))
+
         }else{
             return false;
         }
 
     }
+}
+
 }
